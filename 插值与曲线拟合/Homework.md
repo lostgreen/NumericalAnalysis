@@ -74,3 +74,76 @@ f^{(3)}(x) = \frac{3}{8 \sqrt{x^5}}
 又\( R_k(x) = \frac{f^{k+1}(x)}{(k+1)!} \prod_{i=0}^n(x - x_i) , f^{(1+k)}(x) = 0\)
 于是我们得到\( R_k(x) = 0\)，化简原式子得到
 \( f(x) = x^k = \sum_{i=0}^{n}x_i^kl_i(x)\)
+
+## T3
+
+已知函数表如下，求对应的Newton插值多项式。
+
+| \( x \) | 0 | 1 | 4 | 3 | 6 |
+|---------|---|---|---|---|---|
+| \( y \) | 0 | -7 | 8 | 5 | 14 |
+
+解：
+牛顿插值公式：
+$$
+N_4(x)=C_0+C_1(x-x_0)+C_2(x-x_0)(x-x_1)+C_3(x-x_0)(x-x_1)(x-x_2)+C_4(x-x_0)(x-x_1)(x-x_2)(x-x_3)
+$$
+代入插值条件，得线性方程组
+$$
+\begin{equation}
+\left\{
+    \begin{aligned}
+        C_0&=0\\
+        C_0+C_1&=-7\\
+        C_0+4C_1+12C_2&=8\\
+        C_0+3C_1+6C_2-6C_3&=5\\
+        C_0+6C_1+30C_2+60C_3+180C_4&=14
+    \end{aligned}
+\nonumber
+\right.   
+\end{equation}
+$$
+解得
+$$
+\begin{equation}
+\left\{
+    \begin{aligned}
+        C_0&=0\\
+        C_1&=-7\\
+        C_2&=3\\
+        C_3&=-\frac{4}{3}\\
+        C_4&=\frac{23}{90}
+    \end{aligned}
+\nonumber
+\right.   
+\end{equation}
+$$
+将系数代入插值公式，得
+$$
+\begin{equation}
+    \begin{aligned}
+        N_4(x)&=-7x+3x(x-1)-\frac{4}{3}x(x-1)(x-4)+\frac{23}{90}x(x-1)(x-3)(x-4)\\
+        &=\frac{23}{90}x^4 - \frac{152}{45}x^3 + \frac{1307}{90}x^2 - \frac{92}{5}x
+    \end{aligned}
+\nonumber
+\end{equation}
+$$
+
+## T4
+
+怎样选步长，才能使分段线性插值函数与 \( \sin x \) 的误差不超过 \( \frac{1}{2} \times 10^{-4} \)。
+
+解：
+根据分段线性插值误差公式
+$$
+|f(x) - S(x)| \le |\frac{1}{8}Mh^2|
+$$ $$
+f''(x) = -\sin x
+$$
+推导出
+$$
+\frac{1}{8}h^2 \le \frac{1}{2} \times 10^{-4}
+$$$$
+h \le 2 \times 10 ^ {-2}
+$$
+因此步长小于等于$2 \times 10 ^ {-2}$
